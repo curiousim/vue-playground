@@ -1,0 +1,40 @@
+:root {
+  /* Colors */
+  --color-primary: #1da1f2;
+  --color-primary-hover: #1588d6;
+  --color-background: #ffffff;
+  --color-text: #111111;
+  --color-text-bright: #ffffff;
+  --color-border: #e5e7eb;
+  --color-error: #ef4444;
+  --color-input-border: #d1d5db;
+  --color-focused-border: var(--color-primary);
+  --color-accent: #111827;
+  --nb-bg: var(--gray-200, #e5e7eb);
+  --nb-fg: var(--color-accent);
+
+  /* Typography */
+  --font-family-base: system-ui, -apple-system, sans-serif;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+
+  /* Font Weights */
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+
+  /* Radius */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+
+  /* Motion */
+  --transition-duration-fast: 0.2s;
+  --transition-ease: ease;
+}

@@ -1,0 +1,42 @@
+import { http, HttpResponse } from 'msw'
+
+export const handlers = [
+  http.get('https://api.ipgeolocation.io/v2/ipgeo', async () => {
+    // Simulate network delay
+    await new Promise((resolve) => setTimeout(resolve, 1500))
+
+    return HttpResponse.json({
+      ip: 'MSW-8.8.8.8',
+      location: {
+        continent_code: 'NA',
+        continent_name: 'North America',
+        country_code2: 'US',
+        country_code3: 'USA',
+        country_name: 'United States',
+        country_name_official: 'United States of America',
+        country_capital: 'Washington, D.C.',
+        state_prov: 'California',
+        state_code: 'US-CA',
+        district: 'Santa Clara',
+        city: 'Mountain View',
+        zipcode: '94043-1351',
+        latitude: '37.42240',
+        longitude: '-122.08421',
+        is_eu: false,
+        country_flag: 'https://ipgeolocation.io/static/flags/us_64.png',
+        geoname_id: '6301403',
+        country_emoji: '🇺🇸',
+      },
+      country_metadata: {
+        calling_code: '+1',
+        tld: '.us',
+        languages: ['en-US', 'es-US', 'haw', 'fr'],
+      },
+      currency: {
+        code: 'USD',
+        name: 'US Dollar',
+        symbol: '$',
+      },
+    })
+  }),
+]

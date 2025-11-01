@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import ModalWindow from './components/Modal/ModalWindow.vue'
-import DialogFrame from './components/DialogFrame/DialogFrame.vue'
+import IPGeolocationWidget from './widgets/IPGeolocationWidget/IPGeolocationWidget.vue'
 import { ref } from 'vue'
 
 const modalOpen = ref(false)
@@ -10,7 +10,7 @@ const modalOpen = ref(false)
   <div id="app">
     <button class="open-modal-button" @click="modalOpen = true">Open Modal</button>
     <ModalWindow v-model:open="modalOpen" :showClose="true">
-      <DialogFrame title="IP Lookup" />
+      <IPGeolocationWidget />
     </ModalWindow>
   </div>
 </template>
