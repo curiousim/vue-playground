@@ -2,37 +2,49 @@ name: 🚀 Deploy Vue 3 App to GitHub Pages
 
 on:
   push:
-    branches:
-      - main # Deploy when pushing to main branch
-  workflow_dispatch: # Allow manual triggers too
+    branches: [main]
+  workflow_dispatch:
 
 permissions:
-  contents: write # Needed to push to gh-pages branch
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: 🧾 Checkout repository
+      - name: 🧾 Checkout
         uses: actions/checkout@v4
 
-      - name: ⚙️ Setup Node.js
+      - name: ⚙️ Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'npm'
+          cache: npm
 
-      - name: 📦 Install dependencies
+      - name: 📦 Install
         run: npm ci
 
-      - name: 🏗️ Build project
+      - name: 🏗️ Build
         run: npm run build
 
-      - name: 🚀 Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: 📤 Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          publish_branch: gh-pages
-          cname: '' # leave empty (you’re using GitHub default URL)
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 🚀 Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
