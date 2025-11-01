@@ -1,8 +1,7 @@
-import { ref, shallowRef, watch, onMounted, onBeforeUnmount, toValue, type Ref } from 'vue'
+import { ref, shallowRef, watch, onMounted, onBeforeUnmount, toValue } from 'vue'
 import tzLookup from 'tz-lookup'
 
-type NumLike = number | string | null | undefined
-type MaybeRefNumLike = NumLike | Ref<NumLike>
+type NumLike = number | string
 
 export interface UseLocalClockOptions {
   format?: Intl.DateTimeFormatOptions
@@ -21,10 +20,10 @@ function scheduleToNextSecond(callback: () => void): number {
 }
 
 export function useLocalClock(
-  latRef: MaybeRefNumLike,
-  lonRef: MaybeRefNumLike,
-  locale?: string = navigator.language,
-  opts?: UseLocalClockOptions = {},
+  latRef: NumLike,
+  lonRef: NumLike,
+  locale: string = navigator.language,
+  opts: UseLocalClockOptions = {},
 ) {
   const {
     format = {
@@ -71,8 +70,8 @@ export function useLocalClock(
     formatter.value = null
     timeZone.value = null
 
-    const lat = toNum(toValue(latRef as unknown))
-    const lon = toNum(toValue(lonRef as unknown))
+    const lat = toNum(toValue(latRef as NumLike))
+    const lon = toNum(toValue(lonRef as NumLike))
 
     if (lat == null || lon == null) {
       error.value = new Error('Latitude/longitude must be numeric.')

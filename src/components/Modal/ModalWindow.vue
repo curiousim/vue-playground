@@ -133,10 +133,10 @@ function trapTabKey(e: KeyboardEvent) {
 
   if (!e.shiftKey && active === last) {
     e.preventDefault()
-    first.focus()
+    first?.focus()
   } else if (e.shiftKey && active === first) {
     e.preventDefault()
-    last.focus()
+    last?.focus()
   }
 }
 
@@ -167,7 +167,7 @@ watch(
       const el = dialogRef.value
       if (el) {
         const focusable = getFocusable(el)
-        if (focusable.length > 0) focusable[0].focus()
+        if (focusable.length > 0) focusable[0]?.focus()
         else el.focus()
       }
     } else {

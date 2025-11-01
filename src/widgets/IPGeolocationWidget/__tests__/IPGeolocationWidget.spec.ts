@@ -61,7 +61,7 @@ describe('IPGeolocationWidget', () => {
 
     // Verify badge numbers are sequential
     const badges = wrapper.findAll('.number-badge')
-    expect(badges[0].text()).toBe('1')
-    expect(badges[1].text()).toBe('2')
+    expect(badges[0]?.text()).toBe('1')
+    expect(badges[1]?.text()).toBe('2')
   })
 })

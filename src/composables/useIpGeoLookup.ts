@@ -1,6 +1,6 @@
 import { ref } from 'vue'
-import type { IpGeoResult } from '../../../types/ip-lookup.models'
-import { IP_GEOLOCATION_URL } from '../../../config/api'
+import type { IpGeoResult } from '../types/ip-lookup.models'
+import { IP_GEOLOCATION_URL } from '../config/api'
 
 export function useIpGeoLookup() {
   const endpoint = IP_GEOLOCATION_URL
@@ -38,7 +38,7 @@ export function useIpGeoLookup() {
       result.value = data
       return data
     } catch (e: unknown) {
-      if ((e as unknown)?.name === 'AbortError') {
+      if ((e as { name?: string })?.name === 'AbortError') {
         throw e
       }
       const msg = (e as Error)?.message ?? 'Unexpected error'

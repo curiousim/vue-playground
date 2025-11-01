@@ -36,14 +36,14 @@
 
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
-import InputField from '../../components/InputField/InputField.vue'
-import NumberBadge from '../../components/NumberBadge/NumberBadge.vue'
-import CircleSpinner from '../../components/Spinner/CircleSpinner.vue'
-import LocalClock from '../../components/LocalClock/LocalClock.vue'
-import CountryFlag from '../../components/CountryFlag/CountryFlag.vue'
+import InputField from '@/components/InputField/InputField.vue'
+import NumberBadge from '@/components/NumberBadge/NumberBadge.vue'
+import CircleSpinner from '@/components/Spinner/CircleSpinner.vue'
+import LocalClock from '@/components/LocalClock/LocalClock.vue'
+import CountryFlag from '@/components/CountryFlag/CountryFlag.vue'
 import { isIP } from 'is-ip'
-import { useIpGeoLookup } from './composables/useIpGeoLookup'
-import type { IpGeoResult } from '../../types/ipGeoResult'
+import { useIpGeoLookup } from '../../composables/useIpGeoLookup'
+import type { IpGeoResult } from '@/types/ip-lookup.models'
 
 const props = withDefaults(
   defineProps<{

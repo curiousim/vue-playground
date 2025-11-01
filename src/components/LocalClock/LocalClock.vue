@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useLocalClock } from '../../features/IPGeolocationRow/composables/useLocalClock'
+import { useLocalClock } from '../../composables/useLocalClock'
 
 const props = withDefaults(
   defineProps<{
@@ -23,8 +23,8 @@ const props = withDefaults(
 )
 
 const { timeString, error } = useLocalClock(
-  () => props.lat,
-  () => props.lon,
+  props.lat,
+  props.lon,
   'en-GB', // to show 24 hour format
 )
 
