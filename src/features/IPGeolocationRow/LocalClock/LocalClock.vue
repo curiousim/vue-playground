@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useLocalClock } from '../../composables/useLocalClock'
+import { useLocalClock } from '@/composables/useLocalClock'
 
 const props = withDefaults(
   defineProps<{

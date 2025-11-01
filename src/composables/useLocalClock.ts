@@ -1,4 +1,4 @@
-import { ref, shallowRef, watch, onMounted, onBeforeUnmount, toValue } from 'vue'
+import { ref, shallowRef, onMounted, onBeforeUnmount, toValue } from 'vue'
 import tzLookup from 'tz-lookup'
 
 type NumLike = number | string
@@ -75,6 +75,7 @@ export function useLocalClock(
 
     if (lat == null || lon == null) {
       error.value = new Error('Latitude/longitude must be numeric.')
+      console.error(error.value)
       return
     }
 
@@ -99,13 +100,6 @@ export function useLocalClock(
     isRunning.value = false
     clearTimers()
   }
-
-  watch([() => toValue(latRef as unknown), () => toValue(lonRef as unknown)], async () => {
-    const wasRunning = isRunning.value
-    stop()
-    await buildFormatter()
-    if (wasRunning && !error.value) start()
-  })
 
   onMounted(() => {
     start()

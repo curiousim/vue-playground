@@ -33,12 +33,10 @@ defineEmits<{
   transition: border-color var(--transition-fast);
 }
 
-/* Focused state — uses primary color */
 .input-wrapper:focus-within {
   border-color: var(--color-focused-border);
 }
 
-/* Error state */
 .input-wrapper.error {
   border-color: var(--color-error, #ef4444);
 }

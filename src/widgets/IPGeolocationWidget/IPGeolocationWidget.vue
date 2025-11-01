@@ -2,7 +2,6 @@
 import DialogFrame from '../../components/DialogFrame/DialogFrame.vue'
 import PrimaryButton from '../../components/Buttons/PrimaryButton.vue'
 import IPGeolocationRow from '../../features/IPGeolocationRow/IPGeolocationRow.vue'
-
 import { ref } from 'vue'
 
 const ipRows = ref<{ id: number; ip?: string }[]>([{ id: 1, ip: '' }])
@@ -10,10 +9,6 @@ const ipRows = ref<{ id: number; ip?: string }[]>([{ id: 1, ip: '' }])
 const addIpRow = () => {
   const newId = ipRows.value.length ? Math.max(...ipRows.value.map((row) => row.id)) + 1 : 1
   ipRows.value.push({ id: newId, ip: '' })
-}
-
-const removeIpRow = (id: number) => {
-  ipRows.value = ipRows.value.filter((row) => row.id !== id)
 }
 </script>
 
@@ -28,9 +23,7 @@ const removeIpRow = (id: number) => {
         v-for="ipRow in ipRows"
         :row-number="ipRow.id"
         :key="ipRow.id"
-        v-model="ipRow.ip"
         :placeholder="'Enter IP address'"
-        @remove="removeIpRow(ipRow.id)"
       />
     </div>
   </DialogFrame>
@@ -54,7 +47,6 @@ const removeIpRow = (id: number) => {
   flex-direction: column;
   gap: var(--space-md);
 
-  /* Border under each IP row except last one */
   & > .geolocation-row--container:not(:last-child) {
     border-bottom: 1px solid var(--color-border);
     padding-bottom: var(--space-md);

@@ -33,8 +33,6 @@ export function useIpGeoLookup() {
       }
 
       const data = (await res.json()) as IpGeoResult
-      if (!data.ip) data.ip = ip
-
       result.value = data
       return data
     } catch (e: unknown) {

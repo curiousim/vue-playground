@@ -11,7 +11,6 @@ async function prepareApp() {
   const { worker } = await import('./mocks/browser')
   return await worker.start({
     serviceWorker: {
-      // Respect Vite’s base in case you changed it
       url: `${import.meta.env.BASE_URL}mockServiceWorker.js`,
     },
   })

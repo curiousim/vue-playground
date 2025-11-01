@@ -35,15 +35,14 @@
 </template>
 
 <script setup lang="ts">
+import { isIP } from 'is-ip'
 import { ref, watchEffect } from 'vue'
+import { useIpGeoLookup } from '@/composables/useIpGeoLookup'
 import InputField from '@/components/InputField/InputField.vue'
 import NumberBadge from '@/components/NumberBadge/NumberBadge.vue'
 import CircleSpinner from '@/components/Spinner/CircleSpinner.vue'
-import LocalClock from '@/components/LocalClock/LocalClock.vue'
-import CountryFlag from '@/components/CountryFlag/CountryFlag.vue'
-import { isIP } from 'is-ip'
-import { useIpGeoLookup } from '../../composables/useIpGeoLookup'
-import type { IpGeoResult } from '@/types/ip-lookup.models'
+import CountryFlag from './CountryFlag/CountryFlag.vue'
+import LocalClock from './LocalClock/LocalClock.vue'
 
 const props = withDefaults(
   defineProps<{
@@ -60,8 +59,7 @@ const props = withDefaults(
 const inner = ref(props.modelValue ?? '')
 const hasError = ref(false)
 const errorMessage = ref('')
-const lookupResult = ref<null | IpGeoResult>(null)
-const { isLoading, error: actionError, lookup } = useIpGeoLookup()
+const { isLoading, error: actionError, lookup, result: lookupResult } = useIpGeoLookup()
 
 function validate(input: string) {
   const value = input.trim()
@@ -79,12 +77,7 @@ function validate(input: string) {
 async function runActionIfValid(value: string) {
   if (isLoading.value) return
 
-  try {
-    const data = await lookup(value)
-    lookupResult.value = data
-  } catch (err: unknown) {
-    if ((err as Error)?.name === 'AbortError') return
-  }
+  lookup(value)
 }
 
 function onPaste() {

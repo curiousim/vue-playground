@@ -34,16 +34,6 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref, watch, nextTick } from 'vue'
 
-/**
- * Props
- * - v-model:open — controls visibility
- * - closeOnEsc / closeOnBackdrop — common UX toggles
- * - preventScroll — disables body scroll while open
- * - restoreFocus — returns focus to the previously focused element on close
- * - ariaLabelledby / ariaDescribedby — for a11y; pass IDs of elements inside
- * - role — "dialog" (default) or "alertdialog"
- * - showClose — render built-in close button (optional)
- */
 const props = withDefaults(
   defineProps<{
     open: boolean
@@ -75,7 +65,6 @@ const emit = defineEmits<{
 const dialogRef = ref<HTMLElement | null>(null)
 let restoreEl: Element | null = null
 
-/** open/close helpers */
 function close() {
   emit('update:open', false)
   emit('close')
@@ -121,7 +110,6 @@ function trapTabKey(e: KeyboardEvent) {
   if (!root) return
   const focusable = getFocusable(root)
   if (focusable.length === 0) {
-    // Keep focus on dialog itself
     e.preventDefault()
     root.focus()
     return
@@ -185,7 +173,6 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-/* Fade backdrop + scale dialog */
 .modal-fade-enter-active,
 .modal-fade-leave-active {
   transition:

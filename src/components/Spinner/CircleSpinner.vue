@@ -22,11 +22,11 @@
 <script setup lang="ts">
 withDefaults(
   defineProps<{
-    size?: number // px
-    strokeWidth?: number // px
-    color?: string // any CSS color (default uses current text color)
-    duration?: number // seconds per spin
-    label?: string // accessible label
+    size?: number
+    strokeWidth?: number
+    color?: string
+    duration?: number
+    label?: string
   }>(),
   {
     size: 24,
@@ -61,26 +61,23 @@ withDefaults(
 }
 
 .spinner__track {
-  /* faint background ring */
   stroke: color-mix(in oklab, var(--color-accent), transparent 80%);
 }
 
 .spinner__arc {
   stroke: var(--color-accent);
-  stroke-dasharray: 126; /* ~2πr where r=20 */
-  stroke-dashoffset: 95; /* visible arc */
+  stroke-dasharray: 126;
+  stroke-dashoffset: 95;
   transform-origin: 50% 50%;
   animation: spin var(--duration) linear infinite;
 }
 
-/* Smooth rotation */
 @keyframes spin {
   to {
     transform: rotate(360deg);
   }
 }
 
-/* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .spinner__arc {
     animation: none;
@@ -88,7 +85,6 @@ withDefaults(
   }
 }
 
-/* Screen-reader only text */
 .sr-only {
   position: absolute;
   width: 1px;
