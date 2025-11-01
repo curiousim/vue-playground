@@ -44,7 +44,7 @@ const err = computed(() => error.value)
 .lc-body {
   display: flex;
   align-items: center;
-  min-height: 2.25rem;
+  min-height: 1.75rem;
   width: 100%;
 }
 

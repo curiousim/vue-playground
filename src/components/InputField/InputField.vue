@@ -41,6 +41,16 @@ defineEmits<{
   border-color: var(--color-error, #ef4444);
 }
 
+.input-wrapper.disabled:focus-within {
+  border-color: var(--color-border);
+}
+
+.input-wrapper.disabled {
+  background-color: var(--nb-bg);
+  border-color: var(--color-border);
+  cursor: not-allowed;
+}
+
 .input-field {
   flex: 1;
   border: none;
@@ -49,6 +59,11 @@ defineEmits<{
   color: var(--color-text, #111);
   font-size: var(--font-size-base);
   padding: var(--space-xs) 0;
+}
+
+.input-field:disabled {
+  cursor: not-allowed;
+  color: var(--color_disabled-text);
 }
 
 .input-field::placeholder {
