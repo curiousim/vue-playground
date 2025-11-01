@@ -3,7 +3,7 @@ import { http, HttpResponse } from 'msw'
 export const handlers = [
   http.get('https://api.ipgeolocation.io/v2/ipgeo', async () => {
     // Simulate network delay
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    await new Promise((resolve) => setTimeout(resolve, 300))
 
     return HttpResponse.json({
       ip: 'MSW-8.8.8.8',

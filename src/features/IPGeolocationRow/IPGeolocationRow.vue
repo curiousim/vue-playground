@@ -38,7 +38,7 @@
 import { ref, watchEffect } from 'vue'
 import InputField from '../../components/InputField/InputField.vue'
 import NumberBadge from '../../components/NumberBadge/NumberBadge.vue'
-import CircleSpinner from '../../components/spinners/CircleSpinner.vue'
+import CircleSpinner from '../../components/Spinner/CircleSpinner.vue'
 import LocalClock from '../../components/LocalClock/LocalClock.vue'
 import CountryFlag from '../../components/CountryFlag/CountryFlag.vue'
 import { isIP } from 'is-ip'
@@ -56,12 +56,6 @@ const props = withDefaults(
     placeholder: '',
   },
 )
-
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: string): void
-  (e: 'valid', value: string): void
-  (e: 'invalid', value: string): void
-}>()
 
 const inner = ref(props.modelValue ?? '')
 const hasError = ref(false)
@@ -110,7 +104,6 @@ function onEnter() {
 }
 
 watchEffect(() => {
-  emit('update:modelValue', inner.value)
   // Reset error states on input change
   hasError.value = false
   errorMessage.value = ''

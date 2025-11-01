@@ -1,4 +1,3 @@
-import './styles/main.css'
 import './styles/tokens.css'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
@@ -7,7 +6,7 @@ import App from './App.vue'
 import router from './router'
 
 // Mock Server Worker setup for development and test environments
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 async function prepareApp() {
   if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
     const { worker } = await import('./mocks/browser')
@@ -27,5 +26,5 @@ const app = createApp(App)
 app.use(createPinia())
 app.use(router)
 
-// prepareApp().then(() => app.mount('#app'))
-app.mount('#app')
+prepareApp().then(() => app.mount('#app'))
+// app.mount('#app')

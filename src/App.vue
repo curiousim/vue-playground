@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import BoopButton from './components/Buttons/BoopButton.vue'
 import ModalWindow from './components/Modal/ModalWindow.vue'
 import IPGeolocationWidget from './widgets/IPGeolocationWidget/IPGeolocationWidget.vue'
 import { ref } from 'vue'
@@ -8,7 +9,7 @@ const modalOpen = ref(false)
 
 <template>
   <div id="app">
-    <button class="open-modal-button" @click="modalOpen = true">Open Modal</button>
+    <BoopButton @click="modalOpen = true" />
     <ModalWindow v-model:open="modalOpen" :showClose="true">
       <IPGeolocationWidget />
     </ModalWindow>
@@ -16,25 +17,10 @@ const modalOpen = ref(false)
 </template>
 
 <style scoped>
-.app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-.open-modal-button {
-  background-color: red;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
-  cursor: pointer;
-}
-
-.open-modal-button:hover {
-  background-color: darken(var(--color-primary), 5%);
+#app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 </style>
